@@ -6,6 +6,12 @@
         "php": "^8.3",
         "psr/container": "^2.0@dev"
     },
+    "suggest": {
+        "potter/aware-traits": "dev-main",
+        "potter/aware": "dev-main",
+        "potter/traits": "dev-main",
+        "potter/framework": "dev-main"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
