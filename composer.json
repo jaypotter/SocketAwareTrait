@@ -1,0 +1,21 @@
+{
+    "name": "potter/socket-aware-trait",
+    "description": "PHP Socket Aware Trait",
+    "type": "library",
+    "require": {
+        "php": "^8.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Potter\\Socket\\Aware\\": "src/Potter/Socket/Aware/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jay Potter",
+            "email": "j@ypotter.ca"
+        }
+    ],
+    "minimum-stability": "dev"
+}
