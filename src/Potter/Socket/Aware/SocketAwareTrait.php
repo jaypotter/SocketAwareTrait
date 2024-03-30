@@ -28,5 +28,15 @@ trait SocketAwareTrait
         return $this->getContainer()->has('socket');
     }
     
+    final public function hasSocketError(): bool
+    {
+        return socket_last_error($this->getSocket()) > 0;
+    }
+    
+    final public function readSocket(int $length): string
+    {
+        return socket_read($this->getSocket(), $length);
+    }
+    
     abstract public function getContainer(): ContainerInterface;
 }
