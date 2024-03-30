@@ -3,7 +3,8 @@
     "description": "PHP Socket Aware Trait",
     "type": "library",
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "psr/container": "^2.0@dev"
     },
     "license": "MIT",
     "autoload": {
