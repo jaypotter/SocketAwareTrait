@@ -60,7 +60,7 @@ trait SocketAwareTrait
         while (strlen($message = $this->readSocket(2048))>0) {
             $messageBuffer .= $message;
         }
-        array_push($this->messageBuffer, ...array_values(explode(PHP_EOL, $messageBuffer)));
+        array_push($this->messageBuffer, ...array_values(explode("\\n", $messageBuffer)));
         if (count($this->messageBuffer) === 0) {
             return '';
         }
