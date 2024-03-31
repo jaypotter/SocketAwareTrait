@@ -20,6 +20,16 @@ trait SocketAwareTrait
         socket_connect($this->getSocket(), $address, $port);
     }
     
+    final public function blockSocket(): void
+    {
+        socket_set_block($this->getSocket());
+    }
+    
+    final public function unblockSocket(): void
+    {
+        socket_set_nonblock($this->getSocket());
+    }
+    
     final public function getSocket(): Socket
     {
         return $this->getContainer()->get('socket');
