@@ -43,7 +43,7 @@ trait SocketAwareTrait
     final public function readSocketMessage(): string
     {
         $messageBuffer = '';
-        while (($message = $this->readSocket(2048)) != '') {
+        while (strlen($message = $this->readSocket(2048))>0) {
             $messageBuffer .= $message;
         }
         array_push($this->messageBuffer, ...array_values(explode(PHP_EOL, $messageBuffer)));
