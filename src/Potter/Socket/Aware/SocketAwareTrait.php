@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Potter\Socket\Aware;
 
-use \Psr\Container\ContainerInterface, \Socket;
+use \Psr\Container\ContainerInterface, \resource, \Socket;
 
 trait SocketAwareTrait 
 {
