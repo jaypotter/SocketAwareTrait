@@ -8,6 +8,7 @@ use \Psr\Container\ContainerInterface, \Socket;
 
 trait SocketAwareTrait 
 {
+    private string $lastMessage = '';
     private array $messageBuffer = [];
     
     final public function bindSocket(string $address, int $port = null): void
@@ -54,6 +55,11 @@ trait SocketAwareTrait
         return $message;
     }
     
+    final public function getLastSocketMessage(): string
+    {
+        return $this->lastMessage;
+    }
+    
     final public function readSocketMessage(): string
     {
         $messageBuffer = '';
@@ -66,7 +72,7 @@ trait SocketAwareTrait
         if (count($this->messageBuffer) == 0) {
             return '';
         }
-        return array_shift($this->messageBuffer) . PHP_EOL;
+        return ($this->lastMessage = array_shift($this->messageBuffer)) . PHP_EOL;
     }
     
     final public function writeSocket(string $data): void
