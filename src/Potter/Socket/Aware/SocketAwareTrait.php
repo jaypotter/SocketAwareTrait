@@ -31,7 +31,7 @@ trait SocketAwareTrait
         socket_set_nonblock($this->getSocket());
     }
     
-    final public function getSocket(): mixed
+    final public function getSocket(): Socket
     {
         return $this->getContainer()->get('socket');
     }
