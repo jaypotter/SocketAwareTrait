@@ -57,14 +57,16 @@ trait SocketAwareTrait
     final public function readSocketMessage(): string
     {
         $messageBuffer = '';
-        while (strlen($message = $this->readSocket(2048))>0) {
+        while (strlen($message = $this->readSocket(2048)) > 0) {
             $messageBuffer .= $message;
         }
-        array_push($this->messageBuffer, ...array_values(explode("\\n", $messageBuffer)));
-        if (count($this->messageBuffer) === 0) {
+        if (strlen($messageBuffer) > 0) {
+            array_push($this->messageBuffer, ...array_values(explode("\r\n", $messageBuffer)));
+        }
+        if (count($this->messageBuffer) == 0) {
             return '';
         }
-        return array_shift($this->messageBuffer);
+        return array_shift($this->messageBuffer) . PHP_EOL;
     }
     
     final public function writeSocket(string $data): void
