@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Potter\Socket\Aware;
 
-use \Psr\Container\ContainerInterface, \resource, \Socket;
+use \Psr\Container\ContainerInterface, \Socket;
 
 trait SocketAwareTrait 
 {
@@ -31,7 +31,7 @@ trait SocketAwareTrait
         socket_set_nonblock($this->getSocket());
     }
     
-    final public function getSocket(): resource|Socket
+    final public function getSocket(): mixed
     {
         return $this->getContainer()->get('socket');
     }
