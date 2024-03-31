@@ -77,6 +77,7 @@ trait SocketAwareTrait
     
     final public function writeSocket(string $data): void
     {
+        echo $data . PHP_EOL;
         socket_write($this->getSocket(), $data . PHP_EOL);
     }
     
