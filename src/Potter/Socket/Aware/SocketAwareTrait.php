@@ -47,7 +47,11 @@ trait SocketAwareTrait
     
     final public function readSocket(int $length): string
     {
-        return socket_read($this->getSocket(), $length);
+        $message = socket_read($this->getSocket(), $length);
+        if ($message === false) {
+            return '';
+        }
+        return $message;
     }
     
     final public function readSocketMessage(): string
