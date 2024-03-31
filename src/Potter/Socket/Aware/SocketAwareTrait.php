@@ -40,7 +40,7 @@ trait SocketAwareTrait
     
     final public function writeSocket(string $data): void
     {
-        socket_write($this->getSocket(), $data);
+        socket_write($this->getSocket(), $data . PHP_EOL);
     }
     
     abstract public function getContainer(): ContainerInterface;
