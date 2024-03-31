@@ -31,7 +31,7 @@ trait SocketAwareTrait
         socket_set_nonblock($this->getSocket());
     }
     
-    final public function getSocket(): Socket
+    final public function getSocket(): resource|Socket
     {
         return $this->getContainer()->get('socket');
     }
@@ -48,7 +48,8 @@ trait SocketAwareTrait
     
     final public function readSocket(int $length): string
     {
-        $message = socket_read($this->getSocket(), $length);
+        $socket = $this->getSocket();
+        $message = $socket instanceof \Socket ? socket_read($socket, $length) : fread($socket, $length);
         if ($message === false) {
             return '';
         }
@@ -78,7 +79,12 @@ trait SocketAwareTrait
     final public function writeSocket(string $data): void
     {
         echo $data . PHP_EOL;
-        socket_write($this->getSocket(), $data . PHP_EOL);
+        $socket = $this->getSocket();
+        if ($socket instanceof Socket) {
+            socket_write($socket, $data . PHP_EOL);
+            return;
+        }
+        fwrite($socket, $data);
     }
     
     abstract public function getContainer(): ContainerInterface;
