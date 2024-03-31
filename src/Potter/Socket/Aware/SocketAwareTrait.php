@@ -38,5 +38,10 @@ trait SocketAwareTrait
         return socket_read($this->getSocket(), $length);
     }
     
+    final public function writeSocket(string $data): void
+    {
+        socket_write($this->getSocket(), $data);
+    }
+    
     abstract public function getContainer(): ContainerInterface;
 }
